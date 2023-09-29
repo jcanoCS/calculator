@@ -11,6 +11,8 @@ function multiply(a, b) {
 }
 
 function divide(dividend, divisor) {
+    if(divisor == 0) return 'Cannot divide by 0!';
+    
     return (dividend / divisor);
 }
 
