@@ -1,3 +1,6 @@
+
+//                      OPERATION FUNCTIONS
+/* ************************************************************************** */
 function add(a, b) {
     return (a + b);
 }
@@ -19,3 +22,19 @@ function divide(dividend, divisor) {
 function modulo(dividend, divisor) {
     return (dividend % divisor);
 }
+/* ************************************************************************** */
+
+
+
+//                    VARIABLES TO DISPLAY
+/* ************************************************************************** */
+let firstNumber = null;
+let secondNumber = null;
+let currentOperator = null;
+/* ************************************************************************** */
+
+function operate(num1, operator, num2) {
+    
+}
+
+
