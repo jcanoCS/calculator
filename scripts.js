@@ -28,13 +28,13 @@ function modulo(dividend, divisor) {
 
 //                    VARIABLES TO DISPLAY
 /* ************************************************************************** */
-let firstNumber = null;
-let secondNumber = null;
-let currentOperator = null;
+let displayedNum1 = null;
+let displayedNum2 = null;
+let displayedOperator = null;
 /* ************************************************************************** */
 
 function operate(num1, operator, num2) {
-    
+
 }
 
 
