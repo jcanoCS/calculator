@@ -26,11 +26,12 @@ function modulo(dividend, divisor) {
 
 
 
-//                    VARIABLES TO DISPLAY
+//                    VARIABLES FOR DISPLAY
 /* ************************************************************************** */
 let displayedNum1 = null;
 let displayedNum2 = null;
 let displayedOperator = null;
+let displayedText = "";
 /* ************************************************************************** */
 
 function operate(num1, operator, num2) {
