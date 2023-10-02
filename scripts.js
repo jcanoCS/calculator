@@ -71,6 +71,30 @@ function clearBottomDisplay() {
 //                  ADDING EVENT LISTENERS TO BUTTONS
 /* ************************************************************************** */
 
+function enableDigits() {
+    const digits = document.querySelectorAll('btn.digit');
+    
+    for (let i = 0; i < digits.length; i++) {
+        digits[i].addEventListener("click", function() {
+            digits[i].disabled = false;
+            const value = digits[i].id;
+            addDisplayInput(value);
+          });
+    }
+}
+
+function enableDisplay() {
+    const upper = document.querySelector('h2.upper');
+    const lower = document.querySelector('h2.lower');
+
+    let upperText = document.createTextNode(topResultDisplayedText);
+    let lowerText = document.createTextNode(bottomInputDisplayedText);
+
+    upper.appendChild(upperText);
+    lower.appendChild(lowerText);
+}
 
 
+enableDigits();
+enableDisplay();
 
