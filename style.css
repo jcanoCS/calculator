@@ -1,4 +1,7 @@
-
+@font-face {
+    font-family: 'Lcd Solid';
+    src: url(./fonts/LcdSolid-VPzB.ttf);
+}
 
 body {
     display: flex;
@@ -33,6 +36,8 @@ h2.display {
     align-items: center;
     width: 87%;
     height: 50%;
+    font-family: 'Lcd Solid', 'Roboto', Arial;
+    font-size: 200%;
 }
 
 h2.display.upper {
