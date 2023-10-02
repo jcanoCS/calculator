@@ -31,7 +31,7 @@ function modulo(dividend, divisor) {
 let displayedNum1 = null;
 let displayedNum2 = null;
 let displayedOperator = null;
-let displayedText = "";
+let displayedText = '';
 /* ************************************************************************** */
 
 function operate(num1, operator, num2) {
