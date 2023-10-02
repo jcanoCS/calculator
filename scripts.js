@@ -1,4 +1,3 @@
-
 //                      OPERATION FUNCTIONS
 /* ************************************************************************** */
 function add(a, b) {
@@ -22,6 +21,11 @@ function divide(dividend, divisor) {
 function modulo(dividend, divisor) {
     return (dividend % divisor);
 }
+
+function clear() {
+    clearTopDisplay();
+    clearBottomDisplay();
+}
 /* ************************************************************************** */
 
 
@@ -31,11 +35,42 @@ function modulo(dividend, divisor) {
 let displayedNum1 = null;
 let displayedNum2 = null;
 let displayedOperator = null;
-let displayedText = '';
+let topResultDisplayedText = '';
+let bottomInputDisplayedText = '';
 /* ************************************************************************** */
 
-function operate(num1, operator, num2) {
 
+
+//                  HELPER FUNCTIONS TO DISPLAY VALUES
+/* ************************************************************************** */
+function updateResultDisplay(result) {
+    topResultDisplayedText = result;
+    clearBottomDisplay();
 }
+
+function addDisplayInput(character) {
+    bottomInputDisplayedText += character;
+}
+
+function operate(num1, operator, num2) {
+    let result = '';
+    updateResultDisplay(result);
+}
+
+function clearTopDisplay() {
+    topResultDisplayedText = '';
+}
+
+function clearBottomDisplay() {
+    bottomInputDisplayedText = '';
+}
+/* ************************************************************************** */
+
+
+
+//                  ADDING EVENT LISTENERS TO BUTTONS
+/* ************************************************************************** */
+
+
 
 
