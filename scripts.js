@@ -35,9 +35,10 @@ function clear() {
 let displayedNum1 = null;
 let displayedNum2 = null;
 let displayedOperator = null;
-let topResultDisplayedText = '';
-let bottomInputDisplayedText = '';
+let upperResultText = '';
+let lowerInputText = '';
 
+// references to the html elements that control the top and bottom displays
 const upperScreen = document.getElementById('upper-screen');
 const lowerScreen = document.getElementById('lower-screen');
 /* ************************************************************************** */
@@ -47,7 +48,7 @@ const lowerScreen = document.getElementById('lower-screen');
 //                  HELPER FUNCTIONS TO DISPLAY VALUES
 /* ************************************************************************** */
 function updateResultDisplay(result) {
-    topResultDisplayedText = result;
+    upperResultText = result;
     clearBottomDisplay();
 }
 
@@ -56,18 +57,18 @@ function updateBottomScreen(input) {
 }
 
 function clearBottomDisplay() {
-    bottomInputDisplayedText = '';
+    lowerInputText = '';
     lowerScreen.innerText = '';
 }
 
 function clearTopDisplay() {
-    topResultDisplayedText = '';
+    upperResultText = '';
     upperScreen.innerText = '';
 }
 
 function addInputText(character) {
-    bottomInputDisplayedText += character;
-    updateBottomScreen(bottomInputDisplayedText);
+    lowerInputText += character;
+    updateBottomScreen(lowerInputText);
 }
 
 
@@ -98,18 +99,12 @@ function enableDigits() {
     }
 }
 
-function enableDisplay() {
-    const upper = document.querySelector('h2.upper');
-    const lower = document.querySelector('h2.lower');
-
-    let upperText = document.createTextNode(topResultDisplayedText);
-    let lowerText = document.createTextNode(bottomInputDisplayedText);
-
-    upper.appendChild(upperText);
-    lower.appendChild(lowerText);
+function enableClearButton() {
+    document.querySelector('#clear').addEventListener('click', clear);
 }
 
 
 enableDigits();
+enableClearButton();
 
 
