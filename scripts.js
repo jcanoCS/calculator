@@ -66,6 +66,13 @@ function clearTopDisplay() {
     upperScreen.innerText = '';
 }
 
+function doBackspace() {
+    if(lowerInputText) {
+        lowerInputText = lowerInputText.slice(0, -1);
+        updateBottomScreen(lowerInputText);
+    }
+}
+
 function addInputText(character) {
     lowerInputText += character;
     updateBottomScreen(lowerInputText);
@@ -103,8 +110,13 @@ function enableClearButton() {
     document.querySelector('#clear').addEventListener('click', clear);
 }
 
+function enableDelButton() {
+    document.querySelector('#backspace').addEventListener('click', doBackspace);
+}
+
 
 enableDigits();
 enableClearButton();
+enableDelButton();
 
 
