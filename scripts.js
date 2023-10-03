@@ -37,6 +37,9 @@ let displayedNum2 = null;
 let displayedOperator = null;
 let topResultDisplayedText = '';
 let bottomInputDisplayedText = '';
+
+const upperScreen = document.getElementById('upper-screen');
+const lowerScreen = document.getElementById('lower-screen');
 /* ************************************************************************** */
 
 
@@ -48,22 +51,34 @@ function updateResultDisplay(result) {
     clearBottomDisplay();
 }
 
-function addDisplayInput(character) {
-    bottomInputDisplayedText += character;
+function updateBottomScreen(input) {
+    lowerScreen.innerText = input;
 }
+
+function clearBottomDisplay() {
+    bottomInputDisplayedText = '';
+    lowerScreen.innerText = '';
+}
+
+function clearTopDisplay() {
+    topResultDisplayedText = '';
+    upperScreen.innerText = '';
+}
+
+function addInputText(character) {
+    bottomInputDisplayedText += character;
+    updateBottomScreen(bottomInputDisplayedText);
+}
+
 
 function operate(num1, operator, num2) {
     let result = '';
     updateResultDisplay(result);
 }
 
-function clearTopDisplay() {
-    topResultDisplayedText = '';
-}
 
-function clearBottomDisplay() {
-    bottomInputDisplayedText = '';
-}
+
+
 /* ************************************************************************** */
 
 
@@ -78,7 +93,7 @@ function enableDigits() {
         digits[i].addEventListener("click", function() {
             digits[i].disabled = false;
             const value = digits[i].id;
-            addDisplayInput(value);
+            addInputText(value);
           });
     }
 }
@@ -96,5 +111,5 @@ function enableDisplay() {
 
 
 enableDigits();
-enableDisplay();
+
 
