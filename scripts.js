@@ -41,6 +41,8 @@ let lowerInputText = '';
 // references to the html elements that control the top and bottom displays
 const upperScreen = document.getElementById('upper-screen');
 const lowerScreen = document.getElementById('lower-screen');
+
+
 /* ************************************************************************** */
 
 
@@ -67,15 +69,28 @@ function clearTopDisplay() {
 }
 
 function doBackspace() {
-    if(lowerInputText) {
-        lowerInputText = lowerInputText.slice(0, -1);
+    // exit if inputText string is empty
+    if(!lowerInputText) return;
+    
+    // if last character is a space char, delete last 3 characters
+    if(lowerInputText.at(-1) == ' ') {
+        lowerInputText = lowerInputText.slice(0, -3);
         updateBottomScreen(lowerInputText);
+        return;
     }
+
+    // otherwise, delete only last character
+    lowerInputText = lowerInputText.slice(0, -1);
+    updateBottomScreen(lowerInputText);
 }
 
 function addInputText(character) {
     lowerInputText += character;
     updateBottomScreen(lowerInputText);
+}
+
+function addOperationText(symbol) {
+    addInputText(' ' + symbol + ' ');
 }
 
 
@@ -114,9 +129,20 @@ function enableDelButton() {
     document.querySelector('#backspace').addEventListener('click', doBackspace);
 }
 
+function enableOperationButtons() {
+    const operationButtons = document.querySelectorAll('btn.operation');
+    for (let i = 0; i < operationButtons.length; i++) {
+        operationButtons[i].addEventListener('click', function() {
+            const operationSymbol = operationButtons[i].id;
+            addOperationText(operationSymbol);
+        });
+    }
+}
+
 
 enableDigits();
 enableClearButton();
 enableDelButton();
+enableOperationButtons();
 
 
