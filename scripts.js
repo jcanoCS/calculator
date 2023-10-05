@@ -73,7 +73,7 @@ function doBackspace() {
     if(!lowerInputText) return;
     
     // if last character is a space char, delete last 3 characters
-    if(lowerInputText.at(-1) == ' ') {
+    if(lowerInputText.at(-1) === ' ') {
         lowerInputText = lowerInputText.slice(0, -3);
         updateBottomScreen(lowerInputText);
         return;
