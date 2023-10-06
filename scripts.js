@@ -131,7 +131,7 @@ function operate(num1, operator, num2) {
 function enterOperation() {
     // exit if no input is registered
     if (!lowerInputText) return;
-    
+
     let num1, operator, num2 = '';
 
     // iterate through input string to determine each part of the operation
@@ -207,10 +207,17 @@ function enableEqualsButton() {
     document.getElementById('equals-symbol').addEventListener('click', enterOperation);
 }
 
+function initializeCalculator() {
+    enableDigits();
+    enableClearButton();
+    enableDelButton();
+    enableOperationButtons();
+    enableEqualsButton();
+}
 
-enableDigits();
-enableClearButton();
-enableDelButton();
-enableOperationButtons();
-enableEqualsButton();
 
+
+
+//                  INITIALIZE THE CALCULATOR
+/* ************************************************************************** */
+initializeCalculator();
