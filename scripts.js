@@ -66,6 +66,7 @@ function clearBottomDisplay() {
     currentTextPortion = '';
     lowerInputText = '';
     lowerScreen.innerText = '';
+    clearDetectedValues();
 }
 
 function clearTopDisplay() {
@@ -171,38 +172,16 @@ function operate(num1, operator, num2) {
 }
 
 function enterOperation() {
-    // exit if no input is registered
+    // exit if no input is registered, simply exit
     if (!lowerInputText) return;
-
-    let num1, operator, num2 = '';
-
-    // iterate through input string to determine each part of the operation
-    for (let char of lowerInputText) {
-        // skip empty spaces
-        if (char === ' ') continue;
-        
-        // operator detected
-        else if (operationsArray.includes(char)) {
-            operator = char;
-        }
-        
-        // if operator has not yet been detected, add to first number
-        else if (!operator) {
-            if (num1) num1 += char;
-            if (!num1) num1 = char;
-        }
-
-        // otherwise, add to the second number 
-        else {
-            if (num2) num2 += char;
-            if (!num2) num2 = char;
-        }
-    }
     
-    // conver to 2 num strings to numbers
-    num1 = Number(num1);
-    num2 = Number(num2);
-    operate(num1, operator, num2);
+    // Correctly entered input
+    detectedNum2 = Number(currentTextPortion);
+    let result = operate(detectedNum1, detectedOperator, detectedNum2);
+    result = result.toString();
+    updateResultDisplay(result);
+    detectedNum1 = result;
+
 }
 
 
