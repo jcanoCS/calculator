@@ -1,8 +1,11 @@
 1)  Calculator does not round. Some decimal additions provide incorrect
-results (i.e. 0.1 + 0.2)
+    results (i.e. 0.1 + 0.2)
 
 2)  Overflowing text appears out of the calculator's screen
 
 3)  Del operation does not update (delete) any detected values
 
 4)  Dividing by 0 does not delete current text/operations
+
+5)  After adding the dynamic operations calculating, the equals button has
+    undefined behavior
