@@ -129,6 +129,9 @@ function operate(num1, operator, num2) {
 }
 
 function enterOperation() {
+    // exit if no input is registered
+    if (!lowerInputText) return;
+    
     let num1, operator, num2 = '';
 
     // iterate through input string to determine each part of the operation
