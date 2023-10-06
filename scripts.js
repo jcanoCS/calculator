@@ -25,6 +25,7 @@ function modulo(dividend, divisor) {
 function clear() {
     clearTopDisplay();
     clearBottomDisplay();
+    clearDetectedValues();
 }
 /* ************************************************************************** */
 
@@ -32,11 +33,12 @@ function clear() {
 
 //                    VARIABLES FOR DISPLAY
 /* ************************************************************************** */
-let displayedNum1 = null;
-let displayedNum2 = null;
-let displayedOperator = null;
+let detectedNum1 = null;
+let detectedNum2 = null;
+let detectedOperator = null;
 let upperResultText = '';
 let lowerInputText = '';
+let currentTextPortion = '';
 
 // references to the html elements that control the top and bottom displays
 const upperScreen = document.getElementById('upper-screen');
@@ -61,6 +63,7 @@ function updateBottomScreen(input) {
 }
 
 function clearBottomDisplay() {
+    currentTextPortion = '';
     lowerInputText = '';
     lowerScreen.innerText = '';
 }
@@ -68,6 +71,10 @@ function clearBottomDisplay() {
 function clearTopDisplay() {
     upperResultText = '';
     upperScreen.innerText = '';
+}
+
+function clearDetectedValues() {
+    detectedNum1, detectedNum2, detectedOperator = null;
 }
 
 function doBackspace() {
@@ -88,12 +95,48 @@ function doBackspace() {
 
 function addInputText(character) {
     lowerInputText += character;
+    currentTextPortion += character;
     updateBottomScreen(lowerInputText);
 }
 
+
+
+
+
+
+
 function addOperationText(symbol) {
-    addInputText(' ' + symbol + ' ');
+
+    // if no operators have yet been detected, save the previous input as
+    // num1
+    if (!detectedOperator) {
+        detectedNum1 = Number(currentTextPortion);
+        detectedOperator = symbol;
+        addInputText(' ' + symbol + ' ');
+        // reset current text portion after adding the input text to screen
+        currentTextPortion = '';
+        return;
+    }
+
+    // Otherwise, an operator is already present. Perform the previous operation
+    // before proceeding
+    detectedNum2 = Number(currentTextPortion);
+    currentTextPortion = '';
+    let result = operate(detectedNum1, detectedOperator, detectedNum2);
+
+    // update the new detected values
+    detectedNum1 = result;
+    detectedNum2 = null;
+    detectedOperator = symbol;
+    
+    // update the display
+    result = result.toString();
+    lowerInputText = result + ' ' + symbol + ' ';
+    updateBottomScreen(lowerInputText);
 }
+
+
+
 
 
 function operate(num1, operator, num2) {
@@ -108,7 +151,7 @@ function operate(num1, operator, num2) {
             break;
         case '÷':
             if (num2 == 0) {
-                result = "Error: Cannot divide by 0!";
+                alert("Cannot divide by 0!");
                 break;
             }
             result = divide(num1, num2);
@@ -123,9 +166,8 @@ function operate(num1, operator, num2) {
             console.log('Error: Operation not found1')
     }
 
-    // convert the number result to a string
-    result = result.toString();
-    updateResultDisplay(result);
+    // return the result as a number
+    return result;
 }
 
 function enterOperation() {
