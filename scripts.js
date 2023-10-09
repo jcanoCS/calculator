@@ -1,3 +1,5 @@
+const ROUNDING_PLACES = 5;
+
 //                      OPERATION FUNCTIONS
 /* ************************************************************************** */
 function add(a, b) {
@@ -26,6 +28,13 @@ function clear() {
     clearTopDisplay();
     clearBottomDisplay();
     clearDetectedValues();
+}
+
+function round(number_as_str) {
+    let number = Number(number_as_str);
+    number = number.toFixed(ROUNDING_PLACES);
+    number *= 1;
+    return number.toString();
 }
 /* ************************************************************************** */
 
@@ -132,6 +141,7 @@ function addOperationText(symbol) {
     
     // update the display
     result = result.toString();
+    result = round(result);
     lowerInputText = result + ' ' + symbol + ' ';
     updateBottomScreen(lowerInputText);
 }
@@ -179,6 +189,7 @@ function enterOperation() {
     detectedNum2 = Number(currentTextPortion);
     let result = operate(detectedNum1, detectedOperator, detectedNum2);
     result = result.toString();
+    result = round(result);
     updateResultDisplay(result);
     detectedNum1 = result;
 
