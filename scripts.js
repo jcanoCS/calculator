@@ -138,6 +138,9 @@ function addOperationText(symbol) {
     currentTextPortion = '';
     let result = operate(detectedNum1, detectedOperator, detectedNum2);
 
+    // if error in operation (i.e. dividing by 0), exit
+    if (result == null) return;
+
     // update the new detected values
     detectedNum1 = result;
     detectedNum2 = null;
@@ -166,8 +169,9 @@ function operate(num1, operator, num2) {
             break;
         case '÷':
             if (num2 == 0) {
-                alert("Cannot divide by 0!");
-                break;
+                alert("Warning: Cannot divide by 0!");
+                clear();
+                return null;
             }
             result = divide(num1, num2);
             break;
@@ -192,6 +196,10 @@ function enterOperation() {
     // Correctly entered input
     detectedNum2 = Number(currentTextPortion);
     let result = operate(detectedNum1, detectedOperator, detectedNum2);
+
+    // if error in operation (i.e. dividing by 0), exit
+    if (result == null) return;
+    
     result = result.toString();
     result = round(result);
     updateResultDisplay(result);
