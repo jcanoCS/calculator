@@ -20,6 +20,7 @@ body {
     background-color: rgb(72, 76, 76);
     width: 400px;
     height: 600px;
+    border-radius: 15px;
 }
 
 .container .top {
