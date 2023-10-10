@@ -45,9 +45,11 @@ function round(number_as_str) {
 let detectedNum1 = null;
 let detectedNum2 = null;
 let detectedOperator = null;
+let previousResult = null;
 let upperResultText = '';
 let lowerInputText = '';
 let currentTextPortion = '';
+
 
 // references to the html elements that control the top and bottom displays
 const upperScreen = document.getElementById('upper-screen');
@@ -81,6 +83,7 @@ function clearBottomDisplay() {
 function clearTopDisplay() {
     upperResultText = '';
     upperScreen.innerText = '';
+    previousResult = null;
 }
 
 function clearDetectedValues() {
@@ -118,9 +121,10 @@ function addInputText(character) {
 function addOperationText(symbol) {
 
     // if no operators have yet been detected, save the previous input as
-    // num1
+    // num1 (or the previous result)
     if (!detectedOperator) {
-        detectedNum1 = Number(currentTextPortion);
+        if (previousResult) detectedNum1 = Number(previousResult);
+        if (!previousResult) detectedNum1 = Number(currentTextPortion);
         detectedOperator = symbol;
         addInputText(' ' + symbol + ' ');
         // reset current text portion after adding the input text to screen
@@ -191,8 +195,7 @@ function enterOperation() {
     result = result.toString();
     result = round(result);
     updateResultDisplay(result);
-    detectedNum1 = result;
-
+    previousResult = result;
 }
 
 
